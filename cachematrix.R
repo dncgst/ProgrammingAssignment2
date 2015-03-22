@@ -23,23 +23,23 @@ makeCacheMatrix <- function(x = matrix()) {
 ## and than replacing the value in the environment that contain the
 ## variable. 
     
-    # set function: 
+    # set function: cache the matrix 'x'
     set <- function(y) {
-        x <<- y # set the cached 'x' value to 'y'
+        x <<- y # 
         inv <<- NULL # reset 'inv' to NULL
     }
 
-    # get function: 
-    get <- function() x # just returning 'x'
+    # get function: get cached 'x'
+    get <- function() x  
 
-    # setinv function:
+    # setinv function: take the value of inversed 'x' and cache it as 'inv'
     setinv <- function(inverse){
-        inv <<- inverse # set the cached 'inverse' value to 'inv'
+        inv <<- inverse 
     }
 
-    # getinv function:
+    # getinv function: get cached 'inv'
     getinv <- function() {
-        inv # just returning 'inv'
+        inv
     }
 
     # List of functions, so that they can be called by name with $
@@ -74,7 +74,7 @@ cacheSolve <- function(x, ...) {
     # Solve the matrix as it's inverse in 'inv'
     inv <- solve(data)
 
-    # Set inv as calculated inverse of x
+    # Cache inv as calculated inverse of x
     x$setinv(inv)
 
     # Return a matrix that is the inverse of 'x'
