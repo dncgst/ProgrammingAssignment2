@@ -15,29 +15,34 @@
 
 makeCacheMatrix <- function(x = matrix()) {
 
-    # Inizialize inv
+    # Inizialize the local variable 'inv' to NULL
     inv <- NULL
 
+## The special assignment operator <<- is used to change the value
+## associated with a variable, looking back in enclosing environmens
+## and than replacing the value in the environment that contain the
+## variable. 
+    
     # set function: 
     set <- function(y) {
-        x <<- y
-        inv <<- NULL
+        x <<- y # set the cached 'x' value to 'y'
+        inv <<- NULL # reset 'inv' to NULL
     }
 
     # get function: 
-    get <- function() x
+    get <- function() x # just returning 'x'
 
     # setinv function:
-    setinv <- function(solve) {
-        inv <<- solve
+    setinv <- function(inverse){
+        inv <<- inverse # set the cached 'inverse' value to 'inv'
     }
 
     # getinv function:
     getinv <- function() {
-        inv
+        inv # just returning 'inv'
     }
 
-    # list of functions
+    # List of functions, so that they can be called by name with $
     list(set = set, get = get,
          setinv = setinv,
          getinv = getinv)
@@ -53,18 +58,20 @@ cacheSolve <- function(x, ...) {
     # Get inv from cache
     inv <- x$getinv()
 
-    # If not null, return value read from cache
+    # If not null (already evaluated), return value read from cache
     if(!is.null(inv)) {
         message("Getting cached data")
         return(inv)
     }
 
-    # If null, get inv from x
+    # If null (never evaluated), assign the matrix to 'data'
     data <- x$get()
 
-    # solve(a, b, ...) solves the equation ‘a %*% x = b’ for ‘x’. If
-    # missing, ‘b’ is taken to be an identity matrix and ‘solve’ will
-    # return the inverse of ‘a’.
+## solve(a, b, ...) solves the equation 'a %*% x = b' for 'x'. If
+## missing, 'b' is taken to be an identity matrix and 'solve' will
+## return the inverse of 'a'.
+
+    # Solve the matrix as it's inverse in 'inv'
     inv <- solve(data)
 
     # Set inv as calculated inverse of x
