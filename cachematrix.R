@@ -1,7 +1,3 @@
-https://github.com/CPereir/Programming_Assignment_2/blob/master/cachematrix.R
-
-https://github.com/Ku-Al/ProgrammingAssignment2/blob/master/cachematrix.R
-
 ## Matrix inversion is usually a costly computation and there may be some
 ## benefit to caching the inverse of a matrix rather than compute it
 ## repeatedly.
